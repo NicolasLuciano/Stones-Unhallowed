@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1782061240
+::res://::1782163920
 icon.svg::CompressedTexture2D::2520325466039105887::1782012774::1782012777::1::::<><><>0<>0<>e7be055b229d62f6c38f8a764c078e01<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://addons/::1782015378
 ::res://assets/::1782015387
@@ -7,7 +7,7 @@ icon.svg::CompressedTexture2D::2520325466039105887::1782012774::1782012777::1:::
 ::res://assets/audio/music/::1782013784
 ::res://assets/audio/sfx/::1782013777
 ::res://assets/sprites/::1782066340
-::res://assets/sprites/characters/::1782066497
+::res://assets/sprites/characters/::1782084260
 KnightAttack_strip.png::CompressedTexture2D::1512226393425275965::1561807680::1782084260::1::::<><><>0<>0<>e4423dbb022d57fd03c9a0187183246a<>res://.godot/imported/KnightAttack_strip.png-8d403c38a78865a0df208226aa6f8e39.ctex::
 KnightDeath_strip.png::CompressedTexture2D::8223107935764621553::1561807727::1782084260::1::::<><><>0<>0<>98a2ab866c3e2f4d069a2b0d304a24c9<>res://.godot/imported/KnightDeath_strip.png-74cd51f707de10827cdb0b66cc3ad713.ctex::
 KnightIdle_strip.png::CompressedTexture2D::7811964428246970630::1561807672::1782084260::1::::<><><>0<>0<>d8c88f48374c7a5acb6d3b4f6e4f0a65<>res://.godot/imported/KnightIdle_strip.png-4c582446b094695fe63cdbe0e38d655a.ctex::
