@@ -1,0 +1,16 @@
+# Godot - archivos generados automáticamente
+.godot/
+
+# Exportaciones
+*.exe
+*.apk
+*.aab
+*.ipa
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor VSCode si lo usan
+.vscode/
