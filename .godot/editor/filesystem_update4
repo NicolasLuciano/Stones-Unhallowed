@@ -1,0 +1,4 @@
+res://scenes/characters/player/character.tscn
+res://scripts/character_movement.gd
+res://scenes/characters/player/player.tscn
+res://scenes/characters/player/player.gd
