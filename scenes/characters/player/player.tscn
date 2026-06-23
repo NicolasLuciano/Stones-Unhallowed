@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://c6g2oceav06ew"]
 
-[ext_resource type="Script" uid="uid://b61rd1cgo2i6m" path="res://scenes/characters/player/player.gd" id="1_t61fv"]
 [ext_resource type="Texture2D" uid="uid://kngcmc8ll5yi" path="res://assets/sprites/characters/IDLE/idle_down.png" id="2_686vu"]
 [ext_resource type="Texture2D" uid="uid://ek017fa8ot3" path="res://assets/sprites/characters/IDLE/idle_left.png" id="3_hss88"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dsast"]
-radius = 14.035668
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd3e3"]
 atlas = ExtResource("2_686vu")
@@ -132,15 +128,16 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Character" type="Node2D" unique_id=978099783]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dsast"]
+radius = 14.035668
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1220462170]
-script = ExtResource("1_t61fv")
+[node name="Player" type="CharacterBody2D" unique_id=276134883 groups=["player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1351883842]
-shape = SubResource("CircleShape2D_dsast")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=870520923]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870520923]
 sprite_frames = SubResource("SpriteFrames_dsast")
 animation = &"idle_down"
-frame_progress = 0.58722574
+frame = 6
+frame_progress = 0.45307103
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1351883842]
+shape = SubResource("CircleShape2D_dsast")
