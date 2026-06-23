@@ -1251,7 +1251,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dj6cq")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"idle",
 "speed": 12.0
 }, {
@@ -1351,7 +1351,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6i83c")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"walk",
 "speed": 8.0
 }]
@@ -1363,7 +1363,7 @@ size = Vector2(15, 34)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1360536064]
 sprite_frames = SubResource("SpriteFrames_45lu4")
-animation = &"attack"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=426461118]
 position = Vector2(1.5, -3)

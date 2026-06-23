@@ -10,7 +10,7 @@ var current_state = State.SPAWN
 # --- Stats ---
 var health = 100
 var speed = 60
-var attack_range = 150  # distancia a la que ataca
+var attack_range = 50  # distancia a la que ataca
 var detect_range = 300  # distancia a la que detecta al player
 var player = null
 
@@ -27,7 +27,7 @@ func _physics_process(_delta):
 			move_towards_player()
 			look_for_player()
 		State.ATTACK:
-			pass  # la animación se encarga
+			pass  
 		State.GET_HIT:
 			pass
 		State.DEATH:
@@ -69,9 +69,14 @@ func look_for_player():
 		return
 	var distance = global_position.distance_to(player.global_position)
 	if distance <= attack_range:
-		change_state(State.ATTACK)
+		if current_state != State.ATTACK:
+			change_state(State.ATTACK)
 	elif distance <= detect_range:
-		change_state(State.WALK)
+		if current_state != State.WALK:
+			change_state(State.WALK)
+	else:
+		if current_state != State.IDLE:
+			change_state(State.IDLE)
 
 func move_towards_player():
 	if player == null:
@@ -79,7 +84,7 @@ func move_towards_player():
 	var direction = (player.global_position - global_position).normalized()
 	velocity = direction * speed
 	# flip del sprite según dirección horizontal
-	sprite.flip_h = direction.x > 0
+	sprite.flip_h = direction.x < 0
 	move_and_slide()
 
 # --- Recibir daño ---

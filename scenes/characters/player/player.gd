@@ -1,12 +1,70 @@
 extends CharacterBody2D
 
-@export var speed = 400
+@export var speed = 100
 
-func get_input():
-	var input_direction = Input.get_vector("izquierda","derecha","arriba","abajo")
-	velocity = speed * input_direction
+enum State {IDLE, RUN, ATTACK}
+var current_state = State.IDLE
+var last_direction = "down"
+
+@onready var sprite = $AnimatedSprite2D
+
+func _ready():
+	sprite.animation_finished.connect(_on_animation_finished)
+	change_state(State.IDLE)
+
+func _on_animation_finished():
+	if current_state == State.ATTACK:
+		change_state(State.IDLE)
 
 func _physics_process(_delta):
 	get_input()
 	move_and_slide()
-	
+	update_animation()
+
+func get_input():
+	var input_direction = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
+	velocity = speed * input_direction
+	if current_state!=State.ATTACK:
+		if Input.is_action_just_pressed("atacar"):
+			change_state(State.ATTACK)
+	else:
+		velocity = Vector2.ZERO #Debe haber una mejor solucion
+
+func change_state(new_state: State):
+	current_state = new_state
+	match new_state:
+		State.IDLE:
+			pass
+		State.RUN:
+			pass
+		State.ATTACK:
+			match last_direction:
+				"up":    sprite.play("attack_1_up")
+				"down":  sprite.play("attack_1_down")
+				"left":  sprite.play("attack_1_left")
+				"right": sprite.play("attack_1_right")
+			
+func update_animation():
+	if current_state == State.ATTACK:
+		return
+	if velocity.length() == 0:
+		match last_direction:
+			"up":    sprite.play("idle_up")
+			"down":  sprite.play("idle_down")
+			"left":  sprite.play("idle_left")
+			"right": sprite.play("idle_right")
+	else:
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x > 0:
+				last_direction = "right"
+				sprite.play("run_right")
+			else:
+				last_direction = "left"
+				sprite.play("run_left")
+		else:
+			if velocity.y > 0:
+				last_direction = "down"
+				sprite.play("run_down")
+			else:
+				last_direction = "up"
+				sprite.play("run_up")
