@@ -992,6 +992,7 @@ tile_set = SubResource("TileSet_ocr56")
 [node name="Character" parent="." unique_id=978099783 instance=ExtResource("2_pkc27")]
 position = Vector2(29, 33)
 script = ExtResource("3_sm6og")
+speed = null
 
 [node name="Boss01" parent="." unique_id=816822143 instance=ExtResource("3_lat7k")]
 position = Vector2(-195, 35)

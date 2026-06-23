@@ -7,7 +7,8 @@ var current_state = State.IDLE
 var last_direction = "down"
 
 @onready var sprite = $AnimatedSprite2D
-@onready var hitbox_horizontal: CollisionShape2D = $Hitbox_Horizontal
+@onready var hitbox_vertical: CollisionShape2D = $Hitbox/Hitbox_Vertical
+@onready var hitboxes = {"up": hitbox_vertical.transform.y  = hitbox_vertical.y }
 
 func _ready():
 	sprite.animation_finished.connect(_on_animation_finished)
