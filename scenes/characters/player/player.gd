@@ -28,7 +28,7 @@ func get_input():
 		if Input.is_action_just_pressed("atacar"):
 			change_state(State.ATTACK)
 	else:
-		velocity = Vector2.ZERO #Debe haber una mejor solucion
+		velocity = Vector2.ZERO #Debe haber una mejor solucion para que cuando ataca no se mueva
 
 func change_state(new_state: State):
 	current_state = new_state
