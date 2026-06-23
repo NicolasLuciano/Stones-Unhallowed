@@ -6,6 +6,7 @@ var current_state = State.SPAWN
 
 # --- Referencias ---
 @onready var sprite = $AnimatedSprite2D
+@onready var hitbox: Area2D = $Hitbox
 
 # --- Stats ---
 var health = 100
@@ -94,5 +95,6 @@ func take_damage(amount: int):
 	health -= amount
 	if health <= 0:
 		change_state(State.DEATH)
+		queue_free()
 	else:
 		change_state(State.GET_HIT)

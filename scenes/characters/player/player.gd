@@ -7,6 +7,7 @@ var current_state = State.IDLE
 var last_direction = "down"
 
 @onready var sprite = $AnimatedSprite2D
+@onready var hitbox_horizontal: CollisionShape2D = $Hitbox_Horizontal
 
 func _ready():
 	sprite.animation_finished.connect(_on_animation_finished)
@@ -22,10 +23,10 @@ func _physics_process(_delta):
 	update_animation()
 
 func get_input():
-	var input_direction = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
+	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = speed * input_direction
 	if current_state!=State.ATTACK:
-		if Input.is_action_just_pressed("atacar"):
+		if Input.is_action_just_pressed("action"):
 			change_state(State.ATTACK)
 	else:
 		velocity = Vector2.ZERO #Debe haber una mejor solucion para que cuando ataca no se mueva
@@ -43,7 +44,7 @@ func change_state(new_state: State):
 				"down":  sprite.play("attack_1_down")
 				"left":  sprite.play("attack_1_left")
 				"right": sprite.play("attack_1_right")
-			
+
 func update_animation():
 	if current_state == State.ATTACK:
 		return
