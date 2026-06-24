@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c6g2oceav06ew"]
 
+[ext_resource type="Script" uid="uid://b61rd1cgo2i6m" path="res://scenes/characters/player/player.gd" id="1_blysn"]
 [ext_resource type="Texture2D" uid="uid://cks0n1noh6jn4" path="res://assets/sprites/characters/ATTACK 1/attack1_down.png" id="1_bsn6e"]
 [ext_resource type="Texture2D" uid="uid://kngcmc8ll5yi" path="res://assets/sprites/characters/IDLE/idle_down.png" id="2_686vu"]
 [ext_resource type="Texture2D" uid="uid://cyxj1ouytjx6c" path="res://assets/sprites/characters/ATTACK 1/attack1_left.png" id="2_blysn"]
@@ -755,6 +756,7 @@ size = Vector2(41, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=276134883 groups=["player"]]
 collision_mask = 12
+script = ExtResource("1_blysn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870520923]
 sprite_frames = SubResource("SpriteFrames_dsast")
@@ -771,3 +773,8 @@ shape = SubResource("RectangleShape2D_dsast")
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1351883842]
 shape = SubResource("CapsuleShape2D_bsn6e")
 debug_color = Color(0.9757804, 0.15746608, 0, 0.41960785)
+
+[node name="Attack_Cooldown" type="Timer" parent="." unique_id=1673461070]
+one_shot = true
+
+[connection signal="timeout" from="Attack_Cooldown" to="." method="_on_attack_cooldown_timeout"]

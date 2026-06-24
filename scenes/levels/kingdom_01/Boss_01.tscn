@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://vadjrk08a1st" path="res://assets/sprites/enemies/spr_NecromancerDeath_strip52.png" id="1_0fap0"]
 [ext_resource type="Texture2D" uid="uid://dpjyei8joeash" path="res://assets/sprites/enemies/spr_NecromancerIdle_strip50.png" id="1_dmdnq"]
 [ext_resource type="Texture2D" uid="uid://jipqqsa1fu5o" path="res://assets/sprites/enemies/spr_NecromancerAttackWithEffect_strip47.png" id="1_xluqh"]
+[ext_resource type="PackedScene" uid="uid://c300tsej3r5uo" path="res://scenes/levels/kingdom_01/projectile.tscn" id="2_n6jqm"]
 [ext_resource type="Texture2D" uid="uid://ducn1xwc8tbqu" path="res://assets/sprites/enemies/spr_NecromancerGetHit_strip9.png" id="2_xluqh"]
 [ext_resource type="Texture2D" uid="uid://dmqpgjt1c7h01" path="res://assets/sprites/enemies/spr_NecromancerSpawn_strip20.png" id="4_fwurs"]
 [ext_resource type="Texture2D" uid="uid://dp38t2sst2sde" path="res://assets/sprites/enemies/spr_NecromancerWalk_strip10.png" id="5_n6jqm"]
@@ -1365,6 +1366,7 @@ animations = [{
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("7_fwurs")
+projectile_scene = ExtResource("2_n6jqm")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=113330465]
 position = Vector2(1.5, -3)
@@ -1372,7 +1374,7 @@ shape = SubResource("CapsuleShape2D_blysn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1360536064]
 sprite_frames = SubResource("SpriteFrames_45lu4")
-animation = &"attack"
+animation = &"spawn"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1083447569]
 collision_mask = 2
@@ -1380,5 +1382,7 @@ collision_mask = 2
 [node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=426461118]
 light_mask = 8
 shape = SubResource("CapsuleShape2D_blysn")
+
+[node name="Attack_Cooldown" type="Timer" parent="." unique_id=617273620]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

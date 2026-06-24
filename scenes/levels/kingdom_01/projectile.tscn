@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c300tsej3r5uo"]
+
+[ext_resource type="Script" uid="uid://d2hv2hcirf1wt" path="res://projectile.gd" id="1_xorna"]
+[ext_resource type="Texture2D" uid="uid://cseuof8w3qnqm" path="res://assets/sprites/enemies/range_attack.png" id="2_khxp7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dsast"]
+radius = 4.0
+
+[node name="Projectile" type="CharacterBody2D" unique_id=1331903919]
+collision_layer = 8
+script = ExtResource("1_xorna")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1386158989]
+texture = ExtResource("2_khxp7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2031303904]
+shape = SubResource("CircleShape2D_dsast")
+
+[node name="Timer" type="Timer" parent="." unique_id=1235169626]
+wait_time = 3.453
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

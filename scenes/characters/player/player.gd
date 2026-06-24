@@ -8,6 +8,7 @@ var last_direction = "down"
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hitbox = $Hitbox/Hitbox_attack1
+@onready var attack_timer = $Attack_Cooldown
 
 var hitbox_positions = {
 	"up":    Vector2(0, -20),
@@ -34,7 +35,8 @@ func get_input():
 	velocity = speed * input_direction
 	if current_state!=State.ATTACK:
 		if Input.is_action_just_pressed("action"):
-			change_state(State.ATTACK)
+			if attack_timer.is_stopped():
+				change_state(State.ATTACK)
 	else:
 		velocity = Vector2.ZERO #Debe haber una mejor solucion para que cuando ataca no se mueva
 
@@ -45,6 +47,7 @@ func change_state(new_state: State):
 	current_state = new_state
 	match new_state:
 		State.ATTACK:
+			attack_timer.start()
 			hitbox.disabled = false
 			hitbox.position = hitbox_positions[last_direction]
 			sprite.play("attack_1_" + last_direction)

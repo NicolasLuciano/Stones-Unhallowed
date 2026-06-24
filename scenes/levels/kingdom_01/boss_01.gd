@@ -6,7 +6,8 @@ var current_state = State.SPAWN
 
 # --- Referencias ---
 @onready var sprite = $AnimatedSprite2D
-
+@export var projectile_scene : PackedScene
+@onready var attack_cooldown = $Attack_Cooldown
 # --- Stats ---
 var health = 100
 var speed = 60
@@ -17,7 +18,7 @@ var player = null
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	sprite.animation_finished.connect(_on_animation_finished)
-	change_state(State.SPAWN)
+	change_state(State.IDLE)
 
 func _physics_process(_delta):
 	match current_state:
@@ -27,6 +28,9 @@ func _physics_process(_delta):
 			move_towards_player()
 			look_for_player()
 		State.ATTACK:
+			var new_projectile = projectile_scene.instantiate()
+			new_projectile.direction = (player.global_position - global_position).normalized()
+			add_child(new_projectile)
 			pass  
 		State.GET_HIT:
 			pass
@@ -99,6 +103,5 @@ func take_damage(amount: int):
 	health -= amount
 	if health <= 0:
 		change_state(State.DEATH)
-		queue_free()
 	else:
 		change_state(State.GET_HIT)
