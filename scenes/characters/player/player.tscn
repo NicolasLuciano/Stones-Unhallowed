@@ -455,7 +455,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"attack_1_left",
-"speed": 15.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -754,8 +754,7 @@ size = Vector2(56, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsast"]
 size = Vector2(43, 34)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dsast"]
-radius = 14.035668
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsn6e"]
 
 [node name="Player" type="CharacterBody2D" unique_id=276134883 groups=["player"]]
 collision_mask = 12
@@ -777,5 +776,5 @@ position = Vector2(-21.5, 0)
 shape = SubResource("RectangleShape2D_dsast")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1351883842]
-shape = SubResource("CircleShape2D_dsast")
+shape = SubResource("CapsuleShape2D_bsn6e")
 debug_color = Color(0.9757804, 0.15746608, 0, 0.41960785)

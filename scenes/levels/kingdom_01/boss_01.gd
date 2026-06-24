@@ -6,7 +6,6 @@ var current_state = State.SPAWN
 
 # --- Referencias ---
 @onready var sprite = $AnimatedSprite2D
-@onready var hitbox: Area2D = $Hitbox
 
 # --- Stats ---
 var health = 100
@@ -88,6 +87,10 @@ func move_towards_player():
 	sprite.flip_h = direction.x < 0
 	move_and_slide()
 
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("player_attack"):
+		take_damage(20)
+	
 # --- Recibir daño ---
 func take_damage(amount: int):
 	if current_state == State.DEATH:

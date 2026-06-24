@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ducn1xwc8tbqu" path="res://assets/sprites/enemies/spr_NecromancerGetHit_strip9.png" id="2_xluqh"]
 [ext_resource type="Texture2D" uid="uid://dmqpgjt1c7h01" path="res://assets/sprites/enemies/spr_NecromancerSpawn_strip20.png" id="4_fwurs"]
 [ext_resource type="Texture2D" uid="uid://dp38t2sst2sde" path="res://assets/sprites/enemies/spr_NecromancerWalk_strip10.png" id="5_n6jqm"]
+[ext_resource type="Script" uid="uid://5d60aqavp4lu" path="res://scenes/levels/kingdom_01/boss_01.gd" id="7_fwurs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blysn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xb65g"]
 atlas = ExtResource("1_xluqh")
@@ -1356,17 +1359,25 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_45lu4"]
-size = Vector2(15, 34)
-
 [node name="Boss01" type="CharacterBody2D" unique_id=816822143]
 collision_layer = 4
 collision_mask = 3
+script = ExtResource("7_fwurs")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=113330465]
+position = Vector2(1.5, -3)
+shape = SubResource("CapsuleShape2D_blysn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1360536064]
 sprite_frames = SubResource("SpriteFrames_45lu4")
-animation = &"idle"
+animation = &"attack"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=426461118]
+[node name="Area2D" type="Area2D" parent="." unique_id=1083447569]
+collision_mask = 2
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=426461118]
+light_mask = 8
 position = Vector2(1.5, -3)
-shape = SubResource("RectangleShape2D_45lu4")
+shape = SubResource("CapsuleShape2D_blysn")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
