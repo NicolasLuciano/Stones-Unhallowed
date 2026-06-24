@@ -88,8 +88,8 @@ func move_towards_player():
 	move_and_slide()
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("player_attack"):
-		take_damage(20)
+	if area.is_in_group("player_attack") and not State.GET_HIT:
+		take_damage(player.damage)
 	
 # --- Recibir daño ---
 func take_damage(amount: int):

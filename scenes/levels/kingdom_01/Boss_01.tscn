@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://5d60aqavp4lu" path="res://scenes/levels/kingdom_01/boss_01.gd" id="7_fwurs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blysn"]
+radius = 9.0
+height = 38.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xb65g"]
 atlas = ExtResource("1_xluqh")
@@ -1377,7 +1379,6 @@ collision_mask = 2
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=426461118]
 light_mask = 8
-position = Vector2(1.5, -3)
 shape = SubResource("CapsuleShape2D_blysn")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

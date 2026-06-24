@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
 @export var speed: int = 100
-
+@export var damage: int = 20
 enum State {IDLE, RUN, ATTACK}
 var current_state = State.IDLE
 var last_direction = "down"
 
 @onready var sprite = $AnimatedSprite2D
-@onready var hitboxes = {}
+@onready var hitbox = $Hitbox/Hitbox_attack1
 
 var hitbox_positions = {
 	"up":    Vector2(0, -20),
@@ -17,10 +17,6 @@ var hitbox_positions = {
 }
 
 func _ready():
-	hitboxes = {"up": $Hitbox/Hitbox_Vertical,
-				"down": $Hitbox/Hitbox_Vertical,
-				"left": $Hitbox/Hitbox_Horizontal,
-				"right": $Hitbox/Hitbox_Horizontal}
 	sprite.animation_finished.connect(_on_animation_finished)
 	change_state(State.IDLE)
 
@@ -43,17 +39,17 @@ func get_input():
 		velocity = Vector2.ZERO #Debe haber una mejor solucion para que cuando ataca no se mueva
 
 func disable_all_hitboxes():
-	for hitbox in hitboxes.values():
 		hitbox.disabled = true
 
 func change_state(new_state: State):
 	current_state = new_state
 	match new_state:
 		State.ATTACK:
-			disable_all_hitboxes()
-			hitboxes[last_direction].disabled = false
-			hitboxes[last_direction].position = hitbox_positions[last_direction]
+			hitbox.disabled = false
+			hitbox.position = hitbox_positions[last_direction]
 			sprite.play("attack_1_" + last_direction)
+			await get_tree().create_timer(0.15).timeout
+			disable_all_hitboxes()
 		State.IDLE, State.RUN:
 			disable_all_hitboxes()
 

@@ -748,11 +748,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4ssf"]
-size = Vector2(56, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsast"]
-size = Vector2(43, 34)
+size = Vector2(41, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsn6e"]
 
@@ -761,18 +758,14 @@ collision_mask = 12
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870520923]
 sprite_frames = SubResource("SpriteFrames_dsast")
-animation = &"attack_1_left"
+animation = &"attack_1_up"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1184554401 groups=["player_attack"]]
 collision_layer = 2
 collision_mask = 4
 
-[node name="Hitbox_Vertical" type="CollisionShape2D" parent="Hitbox" unique_id=1785260461]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_s4ssf")
-
-[node name="Hitbox_Horizontal" type="CollisionShape2D" parent="Hitbox" unique_id=369526628]
-position = Vector2(-21.5, 0)
+[node name="Hitbox_attack1" type="CollisionShape2D" parent="Hitbox" unique_id=369526628]
+position = Vector2(-20.5, 8)
 shape = SubResource("RectangleShape2D_dsast")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1351883842]
