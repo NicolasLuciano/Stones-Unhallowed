@@ -73,7 +73,7 @@ func look_for_player():
 		return
 	var distance = global_position.distance_to(player.global_position)
 	if distance <= attack_range:
-		if current_state != State.ATTACK:
+		if current_state != State.ATTACK and attack_cooldown.is_stopped():
 			change_state(State.ATTACK)
 	elif distance <= detect_range:
 		if current_state != State.WALK:

@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://byp754l05lr7n" path="res://assets/sprites/tilesets/Tileset-Terrain2.png" id="1_q1qre"]
 [ext_resource type="PackedScene" uid="uid://c6g2oceav06ew" path="res://scenes/characters/player/player.tscn" id="2_pkc27"]
 [ext_resource type="PackedScene" uid="uid://cns88b1emqh4l" path="res://scenes/levels/kingdom_01/Boss_01.tscn" id="3_lat7k"]
-[ext_resource type="Script" uid="uid://b61rd1cgo2i6m" path="res://scenes/characters/player/player.gd" id="3_sm6og"]
-[ext_resource type="Script" uid="uid://5d60aqavp4lu" path="res://scenes/levels/kingdom_01/boss_01.gd" id="5_5ken7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1qre"]
 texture = ExtResource("1_q1qre")
@@ -991,9 +989,6 @@ tile_set = SubResource("TileSet_ocr56")
 
 [node name="Character" parent="." unique_id=978099783 instance=ExtResource("2_pkc27")]
 position = Vector2(29, 33)
-script = ExtResource("3_sm6og")
-speed = null
 
 [node name="Boss01" parent="." unique_id=816822143 instance=ExtResource("3_lat7k")]
 position = Vector2(-195, 35)
-script = ExtResource("5_5ken7")
