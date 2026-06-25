@@ -8,7 +8,7 @@ var current_state = State.IDLE
 var last_direction = "down"
 
 @onready var sprite = $AnimatedSprite2D
-@onready var hitbox = $Hitbox_attack1
+@onready var hitbox = $Area2D2/Hitbox_attack1
 @onready var attack_timer = $Attack_Cooldown
 
 var hitbox_positions = {
