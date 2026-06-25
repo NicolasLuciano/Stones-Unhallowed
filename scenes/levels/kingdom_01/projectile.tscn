@@ -17,6 +17,13 @@ texture = ExtResource("2_khxp7")
 shape = SubResource("CircleShape2D_dsast")
 
 [node name="Timer" type="Timer" parent="." unique_id=1235169626]
-wait_time = 3.453
+wait_time = 0.519
+
+[node name="Area2D" type="Area2D" parent="." unique_id=94418712]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1539688956]
+shape = SubResource("CircleShape2D_dsast")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

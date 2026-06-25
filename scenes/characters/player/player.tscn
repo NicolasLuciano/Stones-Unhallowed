@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://tbg737mssend" path="res://assets/sprites/characters/RUN/run_right.png" id="11_8y75b"]
 [ext_resource type="Texture2D" uid="uid://dmi4lpwlcupn5" path="res://assets/sprites/characters/RUN/run_up.png" id="12_tebod"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsast"]
+size = Vector2(41, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nfx3"]
 atlas = ExtResource("1_bsn6e")
 region = Rect2(0, 0, 96, 80)
@@ -749,32 +752,28 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsast"]
-size = Vector2(41, 16)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsn6e"]
 
 [node name="Player" type="CharacterBody2D" unique_id=276134883 groups=["player"]]
 collision_mask = 12
 script = ExtResource("1_blysn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870520923]
-sprite_frames = SubResource("SpriteFrames_dsast")
-animation = &"attack_1_up"
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=1184554401 groups=["player_attack"]]
-collision_layer = 2
-collision_mask = 4
-
-[node name="Hitbox_attack1" type="CollisionShape2D" parent="Hitbox" unique_id=369526628]
+[node name="Hitbox_attack1" type="CollisionShape2D" parent="." unique_id=369526628 groups=["player_attack"]]
 position = Vector2(-20.5, 8)
 shape = SubResource("RectangleShape2D_dsast")
 
-[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1351883842]
-shape = SubResource("CapsuleShape2D_bsn6e")
-debug_color = Color(0.9757804, 0.15746608, 0, 0.41960785)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870520923]
+sprite_frames = SubResource("SpriteFrames_dsast")
+animation = &"idle_down"
 
 [node name="Attack_Cooldown" type="Timer" parent="." unique_id=1673461070]
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=662617626 groups=["player_area"]]
+collision_mask = 12
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=1351883842]
+shape = SubResource("CapsuleShape2D_bsn6e")
+debug_color = Color(0.9757804, 0.15746608, 0, 0.41960785)
 
 [connection signal="timeout" from="Attack_Cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -11,14 +11,15 @@ var current_state = State.SPAWN
 # --- Stats ---
 var health = 100
 var speed = 60
-var attack_range = 50  # distancia a la que ataca
-var detect_range = 300  # distancia a la que detecta al player
+var attack_range = 100  # distancia a la que ataca
+var detect_range = 500  # distancia a la que detecta al player
 var player = null
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	sprite.animation_finished.connect(_on_animation_finished)
 	change_state(State.IDLE)
+	attack_cooldown.stop()
 
 func _physics_process(_delta):
 	match current_state:
@@ -28,9 +29,12 @@ func _physics_process(_delta):
 			move_towards_player()
 			look_for_player()
 		State.ATTACK:
-			var new_projectile = projectile_scene.instantiate()
-			new_projectile.direction = (player.global_position - global_position).normalized()
-			add_child(new_projectile)
+			if attack_cooldown.is_stopped():
+				var new_projectile = projectile_scene.instantiate()
+				new_projectile.first_position = position
+				new_projectile.direction = (player.global_position - global_position).normalized()
+				add_sibling(new_projectile)
+			attack_cooldown.start()
 			pass  
 		State.GET_HIT:
 			pass
@@ -72,8 +76,8 @@ func look_for_player():
 	if player == null:
 		return
 	var distance = global_position.distance_to(player.global_position)
-	if distance <= attack_range:
-		if current_state != State.ATTACK and attack_cooldown.is_stopped():
+	if distance <= attack_range and attack_cooldown.is_stopped():
+		if current_state != State.ATTACK:
 			change_state(State.ATTACK)
 	elif distance <= detect_range:
 		if current_state != State.WALK:
