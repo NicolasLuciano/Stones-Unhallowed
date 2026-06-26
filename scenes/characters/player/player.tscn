@@ -756,7 +756,7 @@ size = Vector2(41, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=276134883 groups=["player"]]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_blysn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=870520923]
@@ -781,7 +781,7 @@ collision_mask = 4
 position = Vector2(-20.5, 8)
 shape = SubResource("RectangleShape2D_dsast")
 
-[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=990242694]
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=990242694]
 shape = SubResource("CapsuleShape2D_bsn6e")
 debug_color = Color(0.9757804, 0.15746608, 0, 0.41960785)
 

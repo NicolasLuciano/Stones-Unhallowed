@@ -1377,6 +1377,7 @@ sprite_frames = SubResource("SpriteFrames_45lu4")
 animation = &"spawn"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1083447569]
+collision_layer = 4
 collision_mask = 2
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=426461118]
@@ -1385,6 +1386,10 @@ shape = SubResource("CapsuleShape2D_blysn")
 
 [node name="Attack_Cooldown" type="Timer" parent="." unique_id=617273620]
 wait_time = 1.266
+one_shot = true
+
+[node name="Dash_Cooldown" type="Timer" parent="." unique_id=1584316896]
+wait_time = 0.269
 one_shot = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
